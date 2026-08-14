@@ -1,0 +1,30 @@
+<div>
+  <h1 class="font-bold text-4xl">Posts#index</h1>
+  <p>Find me in app/views/posts/index.html.erb</p>
+
+  <div class="mb-4">
+    <%= link_to "New Post", new_post_path, class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+  <%# loop through all the @posts and show you the title and give a link to them in a table %>
+  <table class="table-auto border-collapse border border-gray-400 w-full">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">Title</th>
+        <th class="px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td class="border px-4 py-2"><%= post.title%></td>
+          <td class="border px-4 py-2">
+            <%= link_to "Show", post_path(post), class: "text-blue-500 hover:text-blue-700" %>
+            <%= link_to "Edit", edit_post_path(post), class: "text-yellow-500 hover:text-yellow-700" %>
+            <%= button_to "Delete", post_path(post), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-red-500 hover:text-red-700" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
